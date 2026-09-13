@@ -1,4 +1,5 @@
 import { Badge, Button, Card, Logo, Reveal } from '@/components';
+import { BenchChart, CompareViewer } from '@/features/benchmark';
 import { SiteLayout } from '@/layouts';
 
 const links = [
@@ -51,6 +52,9 @@ export function Home() {
       <section id="benchmark">
         <div className="wrap">
           <Reveal className="section-head"><h2>Bounded, and smaller.</h2><p className="muted">OWLG on a 169 MPixel aerial orthophoto (674.5 MB raw), every error measured over every pixel. Drag the split to compare the pixels; switch to the error map to see where each codec spends its bytes.</p></Reveal>
+          <Reveal><BenchChart /></Reveal>
+          <Reveal style={{ marginTop: 32 }}><CompareViewer /></Reveal>
+          <Reveal style={{ marginTop: 40, textAlign: 'center' }}><Button href="owlg/#benchmark" variant="primary">Full benchmark →</Button></Reveal>
         </div>
       </section>
 

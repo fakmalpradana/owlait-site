@@ -93,8 +93,10 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
 
 @media(max-width:480px){.code-bar{padding:7px 8px 7px 12px}.code pre{padding:14px}.code-lang{font-size:10px}}
 .tabs{display:flex;gap:6px;padding:4px;width:max-content;border-radius:999px}
-.tabs button{border:0;background:none;padding:8px 18px;border-radius:999px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer}
-.tabs button.on{background:#fff;color:var(--fg);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tabs button{position:relative;border:0;background:none;padding:8px 18px;border-radius:999px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer}
+.tabs button.on{color:var(--fg)}
+.tabs-indicator{position:absolute;inset:0;border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tab-label{position:relative;z-index:1}
 [data-pane]{display:none}[data-pane].on{display:block}
 /* every table on the site sits inside this same glass card */
 .tbl{margin-top:40px;padding:8px 20px 20px;overflow-x:auto}
