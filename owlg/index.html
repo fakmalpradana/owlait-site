@@ -1,101 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OWLG — Optimized Weighted Lossy GeoTIFF | OWLAIT</title>
-<meta name="description" content="OWLG: a raster format with a hard per-pixel error bound. pip install owlg · npm install owlg. QGIS plugin, OGC API Tiles, WMS.">
-<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OWLG — Optimized Weighted Lossy GeoTIFF | OWLAIT</title>
+  <meta name="description" content="OWLG: a raster format with a hard per-pixel error bound. pip install owlg · npm install owlg. QGIS plugin, OGC API Tiles, WMS.">
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
-<div class="bg" aria-hidden="true"><div class="blob p"></div><div class="blob b"></div><div class="blob c"></div><div class="blob p2"></div></div>
-
-<nav><div class="glass">
-  <a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#ff4fa3"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><path d="M12 14 L22 24 H42 L52 14 V38 A20 20 0 0 1 12 38 Z" fill="url(#g)"/><circle cx="24" cy="34" r="7" fill="#fff"/><circle cx="40" cy="34" r="7" fill="#fff"/><circle cx="24" cy="34" r="3.2" fill="#1d1d1f"/><circle cx="40" cy="34" r="3.2" fill="#1d1d1f"/><path d="M32 40 L29 45 H35 Z" fill="#fff"/></svg> owlait</a>
-  <div class="links"><a href="#why">Why</a><a href="#benchmark">Benchmark</a><a href="#pixels">Pixels</a><a href="#install">Install</a><a href="#qgis">QGIS</a><a href="docs/">Docs</a></div>
-  <a class="btn ghost sm" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">GitHub</a>
-</div></nav>
-
-<section class="hero">
-  <div class="wrap">
-    <span class="badge">v0.1.0 · AGPL-3.0</span>
-    <h1><span class="grad">OWLG</span><br>Optimized Weighted Lossy GeoTIFF</h1>
-    <p class="lead muted">A raster format with a <strong>hard per-pixel error bound</strong>. For <code>--delta d</code>, every pixel of every band satisfies |original − decoded| ≤ d. Not on average. Every pixel, provably.</p>
-    <div class="cta"><a class="btn primary" href="#install">Install</a><a class="btn ghost" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">View on GitHub</a></div>
-  </div>
-</section>
-
-<section id="why">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>Why a bound, not just a smaller file.</h2><p class="muted">Lossy codecs are compared by average error — and averages hide the pixel that matters. OWLG stores a lossy base layer plus an entropy-coded correction layer that drags every pixel back inside ±δ before the file is written.</p></div>
-    <div class="grid">
-      <div class="card glass reveal"><div class="icon">±δ</div><h3>Guaranteed bound</h3><p class="muted"><code>owlg verify</code> proves |orig − decoded| ≤ δ over the whole raster. At δ = 0 the round trip is bit-identical, SHA-256 verified.</p></div>
-      <div class="card glass reveal"><div class="icon">GB</div><h3>10–100 GB rasters</h3><p class="muted">Tiled layout with constant-RAM encode and decode. Optional AES-256-GCM encryption. Numba path decodes ~26× faster.</p></div>
-      <div class="card glass reveal"><div class="icon">◫</div><h3>Serve it anywhere</h3><p class="muted">OWLGT web tile pyramids over OGC API – Tiles/Maps and WMS 1.3.0. QGIS plugin reads .owlg in place. Zero-dependency npm reader.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="benchmark">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>Benchmark.</h2><p class="muted">A 169 MPixel aerial orthophoto — <code>FT2026</code>, 12 986 × 12 986 × 4, 674.5 MB raw, 6.6 cm/pixel. Every lossy file was decoded back and diffed against the original over all 169 M pixels of every band; for OWLG that is the proof of the bound, not a claim.</p></div>
-    <div id="bench-stats" class="stats"></div>
-    <div id="bench-chart" class="reveal"></div>
-    <div id="bench-table" class="reveal"></div>
-    <p class="muted reveal" style="margin-top:20px;font-size:14px">Reproduce with <code>python benchmarks/bench_large.py</code>; JPEG 2000 rows use OpenJPEG through GDAL as the closest freely writable stand-in for ECW. Ratios depend enormously on the imagery — run it on your own raster before believing any table, including this one.</p>
-  </div>
-</section>
-
-<section id="pixels">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>What the pixels look like.</h2><p class="muted">The same 320 × 320 window from the original and from each file. Drag the split. Switch to the error map — <code>|decoded − original|</code>, worst of the three bands, black 0 to white ≥ 64 DN — to see where the bytes went. At native scale every codec looks fine; that is the problem with judging by eye.</p></div>
-    <div id="compare" class="reveal"></div>
-  </div>
-</section>
-
-<section id="install">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>Install.</h2><p class="muted">Python for encoding and the full toolchain; Node for a zero-dependency reader and tile server.</p></div>
-    <div class="reveal" style="margin-top:40px">
-      <div class="tabs glass"><button data-tab="pip" class="on">pip</button><button data-tab="npm">npm</button></div>
-      <div data-pane="pip" class="on">
-        <pre data-lang="bash">pip install "owlg[full] @ git+https://github.com/fakmalpradana/owlait-owlg.git"   # everything
-pip install "owlg @ git+https://github.com/fakmalpradana/owlait-owlg.git"         # reader only; numpy is the single hard dependency</pre>
-        <pre data-lang="bash">owlg encode ortho.tif ortho.owlg --delta 2      # 6.1x smaller than raw, 3.1x smaller than a lossless GeoTIFF
-owlg encode ortho.tif small.owlg --target 20x   # the encoder finds the smallest bound that reaches 20x
-owlg verify small.owlg ortho.tif                # proves the bound over every pixel
-owlg vrt    ortho.owlg                          # now QGIS and gdalinfo read it directly</pre>
-      </div>
-      <div data-pane="npm">
-        <pre data-lang="bash">npm install github:fakmalpradana/owlait-owlg#main:packages/owlg-js   # zero dependencies, ~10 kB
-npx owlg info file.owlg</pre>
-        <pre data-lang="js">import { openOwlg } from 'owlg';
-// also: 'owlg/maplibre', 'owlg/leaflet', 'owlg/server'</pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="qgis">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>QGIS plugin.</h2><p class="muted">Reads <code>.owlg</code> files in place — no decode to a GeoTIFF copy. Build the zip with <code>python scripts/build_all.py</code>, then <em>Plugins ▸ Manage and Install Plugins ▸ Install from ZIP</em> and restart QGIS.</p></div>
-    <div class="reveal" style="margin-top:40px"><a class="btn primary" href="https://github.com/fakmalpradana/owlait-owlg#qgis-plugin" target="_blank" rel="noopener">Plugin guide on GitHub</a></div>
-  </div>
-</section>
-
-<section style="text-align:center;padding-top:0">
-  <div class="wrap reveal glass" style="padding:64px 24px">
-    <h2>Open source. <span class="grad">AGPL-3.0.</span></h2>
-    <p class="muted" style="margin:16px auto 32px;max-width:520px;font-size:19px">226 tests, full docs, benchmarks and samples in the repository.</p>
-    <a class="btn primary" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">github.com/fakmalpradana/owlait-owlg</a>
-  </div>
-</section>
-
-<footer>© 2026 OWLAIT · <a href="../">owlait.com</a></footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="../assets/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="../assets/bench.js" data-base="../assets/ft2026/"></script>
+  <div id="root" data-page="owlg"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

@@ -1,120 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OWLAIT — Geospatial Information & AI Solutions</title>
-<meta name="description" content="OWLAIT builds geospatial information and AI solutions: OWLG raster format, OWLcity LLM spatial analytics, 3D digital twins and LiDAR AI.">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OWLAIT — Geospatial Information & AI Solutions</title>
+  <meta name="description" content="OWLAIT builds geospatial information and AI solutions: OWLG raster format, OWLcity LLM spatial analytics, 3D digital twins and LiDAR AI.">
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
-<div class="bg" aria-hidden="true"><div class="blob p"></div><div class="blob b"></div><div class="blob c"></div><div class="blob p2"></div></div>
-
-<nav><div class="glass">
-  <a class="brand" href="/"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#ff4fa3"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><path d="M12 14 L22 24 H42 L52 14 V38 A20 20 0 0 1 12 38 Z" fill="url(#g)"/><circle cx="24" cy="34" r="7" fill="#fff"/><circle cx="40" cy="34" r="7" fill="#fff"/><circle cx="24" cy="34" r="3.2" fill="#1d1d1f"/><circle cx="40" cy="34" r="3.2" fill="#1d1d1f"/><path d="M32 40 L29 45 H35 Z" fill="#fff"/></svg> owlait</a>
-  <div class="links"><a href="#solutions">Solutions</a><a href="#about">About</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div>
-  <a class="btn ghost sm" href="https://github.com/fakmalpradana" target="_blank" rel="noopener">GitHub</a>
-</div></nav>
-
-<section class="hero">
-  <div class="wrap">
-    <div class="mark"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#ff4fa3"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><path d="M12 14 L22 24 H42 L52 14 V38 A20 20 0 0 1 12 38 Z" fill="url(#g)"/><circle cx="24" cy="34" r="7" fill="#fff"/><circle cx="40" cy="34" r="7" fill="#fff"/><circle cx="24" cy="34" r="3.2" fill="#1d1d1f"/><circle cx="40" cy="34" r="3.2" fill="#1d1d1f"/><path d="M32 40 L29 45 H35 Z" fill="#fff"/></svg></div>
-    <h1>Geospatial intelligence,<br><span class="grad">engineered.</span></h1>
-    <p class="lead muted">OWLAIT builds open tools where geospatial information meets AI — from provably bounded raster formats to LLM-driven spatial analytics and 3D digital twins.</p>
-    <div class="cta"><a class="btn primary" href="owlg/">Explore OWLG</a><a class="btn ghost" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">View on GitHub</a></div>
-  </div>
-</section>
-
-<section id="solutions">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>Solutions.</h2><p class="muted">One product shipping today. More on the way.</p></div>
-    <div class="grid">
-      <a class="card glass reveal" href="owlg/">
-        <div class="icon">G</div><span class="badge">v0.1.0 · Available</span>
-        <h3>OWLG</h3><p class="muted">Optimized Weighted Lossy GeoTIFF. A raster format with a hard per-pixel error bound — every pixel provably within ±δ. 23× smaller than raw at a proven ±16 DN on a 169 MPixel orthophoto; web tiles from the same codec.</p>
-        <p style="margin-top:auto;font-weight:600">Learn more →</p>
-      </a>
-      <div class="card glass reveal">
-        <div class="icon">C</div><span class="badge soon">Coming soon</span>
-        <h3>OWLcity</h3><p class="muted">Talk to your spatial database. Interactive, LLM-driven analysis over geospatial data — ask in plain language, get maps and answers.</p>
-      </div>
-      <div class="card glass reveal">
-        <div class="icon">T</div><span class="badge soon">Coming soon</span>
-        <h3>Thesis</h3><p class="muted">Master's research in Geodetic Engineering (UGM) × Computational Geoscience (University of Glasgow). Details to follow.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="benchmark">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>Bounded, and smaller.</h2><p class="muted">OWLG on a 169 MPixel aerial orthophoto (674.5 MB raw), every error measured over every pixel. Drag the split to compare the pixels; switch to the error map to see where each codec spends its bytes.</p></div>
-    <div id="bench-chart" class="reveal"></div>
-    <div id="compare" class="reveal" style="margin-top:32px"></div>
-    <div class="reveal" style="margin-top:40px;text-align:center"><a class="btn primary" href="owlg/#benchmark">Full benchmark →</a></div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head reveal"><h2>What we do.</h2></div>
-    <div class="grid">
-      <div class="card reveal"><h3>3D Digital Twins</h3><p class="muted">Airborne LiDAR → semantic classification → LOD-2/LOD-3 reconstruction → web 3D. CityGML, 3D Tiles, CesiumJS.</p></div>
-      <div class="card reveal"><h3>LiDAR & Point-Cloud AI</h3><p class="muted">DGCNN / PointNet classification, DTM/DSM extraction, building footprint and tree detection at 85–92% accuracy.</p></div>
-      <div class="card reveal"><h3>Geospatial AI & LLMs</h3><p class="muted">Segmentation, object detection and retrieval-augmented LLM platforms over spatial datasets for ministries and industry.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap about">
-    <div class="avatar reveal"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#ff4fa3"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><path d="M12 14 L22 24 H42 L52 14 V38 A20 20 0 0 1 12 38 Z" fill="url(#g)"/><circle cx="24" cy="34" r="7" fill="#fff"/><circle cx="40" cy="34" r="7" fill="#fff"/><circle cx="24" cy="34" r="3.2" fill="#1d1d1f"/><circle cx="40" cy="34" r="3.2" fill="#1d1d1f"/><path d="M32 40 L29 45 H35 Z" fill="#fff"/></svg></div>
-    <div class="reveal">
-      <h2>Fairuz Akmal Pradana</h2>
-      <p class="muted" style="margin-top:8px;font-size:19px">Founder · Geospatial AI Engineer</p>
-      <p style="margin-top:20px">Geospatial engineer specialising in 3D digital twins, LiDAR analytics and Geospatial AI. Technical Lead of Indonesia's largest 3D city mapping project (DKI Jakarta, 2025) at the GeoAIT research group, Universitas Gadjah Mada.</p>
-      <ul>
-        <li>LPDP awardee — double-degree MEng Geodetic Engineering (UGM) & MSc Computational Geoscience (University of Glasgow)</li>
-        <li>Delivered AI-driven mapping for Ministry of Public Works, Ministry of ATR/BPN, DKI Jakarta Province, PT Vale Indonesia, Telkom Indonesia and Leica Geosystems</li>
-        <li>Co-author of CASCADE-3D (IEEE, 2026)</li>
-      </ul>
-      <div class="social">
-        <a class="btn ghost sm" href="https://www.linkedin.com/in/fairuz-akmal-pradana-52688b202/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost sm" href="https://github.com/fakmalpradana" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn ghost sm" href="https://ieeexplore.ieee.org/author/559636355754360" target="_blank" rel="noopener">IEEE Xplore</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="publications">
-  <div class="wrap">
-    <div class="section-head reveal"><h2>Publications.</h2></div>
-    <ul class="pubs">
-      <li class="glass reveal"><a href="https://ieeexplore.ieee.org/abstract/document/11400619" target="_blank" rel="noopener"><strong>CASCADE-3D: A GUI-Driven Framework for Automated 3D Building Model Reconstruction</strong></a><div class="v">IEEE, 2026 · Co-author — DGCNN point-cloud classification module</div></li>
-      <li class="glass reveal"><strong>Enabling Smart Campus Digital Twins through UAV LiDAR and Integrated Sensing Technologies</strong><div class="v">Under review, 2026</div></li>
-      <li class="glass reveal"><strong>Reconstructing the Queen of the East: A Spatiotemporal 3D Web Map for 17th-Century Batavia using Multi-Epoch Historical Maps and 2023 LiDAR</strong><div class="v">Under review, 2026</div></li>
-      <li class="glass reveal"><strong>Immersive Multi-Epoch 3D Volcanic Digital Twin Reconstruction Using Structure from Motion and Gaussian Splatting: Mount Agung and Mount Kelud, Indonesia</strong><div class="v">Under review, 2026</div></li>
-      <li class="glass reveal"><strong>Development of a Heritage Digital Twin of the Yogyakarta Philosophical Axis Based on 3D WebGIS for Cultural Preservation and Education</strong><div class="v">Under review</div></li>
-    </ul>
-  </div>
-</section>
-
-<section id="contact" style="text-align:center">
-  <div class="wrap reveal">
-    <h2>Let's build something.</h2>
-    <p class="muted" style="margin:16px auto 32px;max-width:520px;font-size:19px">Open to collaboration, research partnerships and consulting on geospatial AI.</p>
-    <div class="cta" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <a class="btn primary" href="mailto:fakmalpradana@gmail.com">Email me</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/fairuz-akmal-pradana-52688b202/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 OWLAIT · Fairuz Akmal Pradana · Yogyakarta, Indonesia</footer>
-<script src="assets/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="assets/bench.js" data-base="assets/ft2026/"></script>
+  <div id="root" data-page="home"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

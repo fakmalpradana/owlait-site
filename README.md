@@ -1,14 +1,42 @@
 # owlait.com
 
-Static landing page for OWLAIT. No build step.
+Vite multi-page React + TypeScript site for OWLAIT.
+
+## Run locally
+
+Requires Node.js 26 and npm 11.
 
 ```bash
-python3 -m http.server 8000   # then open http://localhost:8000
+npm install
+npm run dev
+npm run build
+npm run preview
+npm run typecheck
 ```
 
-Deploy: GitHub Pages from `main` / root. `CNAME` points to owlait.com.
+## URLs
 
-`owlg/docs/content/*.md` are copied from `../owlg/docs/*.md` (sibling repo) — re-copy manually whenever those change.
+| URL | Entry |
+| --- | --- |
+| `/` | Home |
+| `/404.html` | Not found |
+| `/owlg/` | OWLG |
+| `/owlg/docs/` | Documentation index |
+| `/owlg/docs/getting-started/` | Getting started |
+| `/owlg/docs/cli/` | CLI reference |
+| `/owlg/docs/python-api/` | Python API |
+| `/owlg/docs/node-api/` | Node.js API |
+| `/owlg/docs/qgis/` | QGIS plugin |
+| `/owlg/docs/format/` | Format specification |
 
-`assets/ft2026/` (crops, `manifest.json`, `results.json`) is generated from the sibling repo:
-`python benchmarks/visual_crops_web.py data/FT2026_crop/FT2026_crop.tif data/FT2026_crop/FT2026_crop_3857.tif data/bench_work -o ../site/assets/ft2026 --loc 6000,8000 --loc 7040,0 --loc 5760,8960 --labels terrace,courtyard,canopy`
+## Generated sources
+
+`/assets/ft2026/` is generated from the sibling `owlait-owlg` repo into `public/assets/ft2026/`. `src/content/*.md` is copied from that repo's `docs/*.md`; refresh both when their source changes.
+
+```bash
+python benchmarks/visual_crops_web.py data/FT2026_crop/FT2026_crop.tif data/FT2026_crop/FT2026_crop_3857.tif data/bench_work -o ../site/public/assets/ft2026 --loc 6000,8000 --loc 7040,0 --loc 5760,8960 --labels terrace,courtyard,canopy
+```
+
+## Docs
+
+- [Project structure](docs/project-structure.md)

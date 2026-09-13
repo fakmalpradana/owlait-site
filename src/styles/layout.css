@@ -1,0 +1,9 @@
+/* nav */
+nav{position:sticky;top:12px;z-index:10;margin:12px auto 0;max-width:var(--max);padding:0 24px}
+nav .glass{display:flex;align-items:center;gap:28px;padding:10px 20px;border-radius:999px}
+nav .brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+nav .brand svg{width:26px;height:26px}
+nav .links{display:flex;gap:24px;margin-left:auto;font-size:15px;color:var(--muted)}
+nav .links a:hover{color:var(--fg)}
+.mobile-menu-trigger,.mobile-menu{display:none}
+@media(max-width:720px){nav .glass{gap:8px;padding:8px 10px}nav .links{display:none}.nav-docs{margin-left:auto}nav .btn.sm{padding:7px 10px}.mobile-menu-trigger{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.05);color:var(--fg);font:inherit;cursor:pointer}nav .glass.mobile-menu{background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.8));position:absolute;top:calc(100% + 8px);right:0;left:0;display:flex;flex-direction:column;gap:4px;padding:12px 18px;border-radius:20px}.mobile-menu a{padding:8px 4px;color:var(--muted)}.mobile-menu a:hover{color:var(--fg)}}
