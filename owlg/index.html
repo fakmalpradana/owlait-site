@@ -13,7 +13,7 @@
 
 <nav><div class="glass">
   <a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#ff4fa3"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><path d="M12 14 L22 24 H42 L52 14 V38 A20 20 0 0 1 12 38 Z" fill="url(#g)"/><circle cx="24" cy="34" r="7" fill="#fff"/><circle cx="40" cy="34" r="7" fill="#fff"/><circle cx="24" cy="34" r="3.2" fill="#1d1d1f"/><circle cx="40" cy="34" r="3.2" fill="#1d1d1f"/><path d="M32 40 L29 45 H35 Z" fill="#fff"/></svg> owlait</a>
-  <div class="links"><a href="#why">Why</a><a href="#benchmark">Benchmark</a><a href="#install">Install</a><a href="#qgis">QGIS</a></div>
+  <div class="links"><a href="#why">Why</a><a href="#benchmark">Benchmark</a><a href="#install">Install</a><a href="#qgis">QGIS</a><a href="docs/">Docs</a></div>
   <a class="btn ghost sm" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">GitHub</a>
 </div></nav>
 
@@ -40,7 +40,7 @@
 <section id="benchmark">
   <div class="wrap">
     <div class="section-head reveal"><h2>Benchmark.</h2><p class="muted"><code>samples/rgb_small.tif</code>, 6.6 M pixels. Reproduce with <code>python benchmarks/bench_options.py</code>.</p></div>
-    <div class="tbl glass reveal" style="padding:8px 16px 16px">
+    <div class="tbl glass reveal">
     <table>
       <thead><tr><th>Codec</th><th>RMSE</th><th>Worst pixel</th><th>Size</th></tr></thead>
       <tbody>
@@ -60,18 +60,18 @@
     <div class="reveal" style="margin-top:40px">
       <div class="tabs glass"><button data-tab="pip" class="on">pip</button><button data-tab="npm">npm</button></div>
       <div data-pane="pip" class="on">
-        <div class="code"><button class="copy">Copy</button><pre>pip install owlg[full]      # everything: rasterio, imagecodecs, numba, cryptography, pillow
-pip install owlg            # reader only; numpy is the single hard dependency</pre></div>
-        <div class="code"><button class="copy">Copy</button><pre>owlg encode ortho.tif ortho.owlg --delta 2    # 2.9x smaller than lossless GeoTIFF
+        <pre data-lang="bash">pip install owlg[full]      # everything: rasterio, imagecodecs, numba, cryptography, pillow
+pip install owlg            # reader only; numpy is the single hard dependency</pre>
+        <pre data-lang="bash">owlg encode ortho.tif ortho.owlg --delta 2    # 2.9x smaller than lossless GeoTIFF
 owlg verify ortho.owlg ortho.tif              # proves the bound over every pixel
 owlg vrt    ortho.owlg                        # QGIS and gdalinfo read it directly
-owlg check                                    # probe codecs available in your env</pre></div>
+owlg check                                    # probe codecs available in your env</pre>
       </div>
       <div data-pane="npm">
-        <div class="code"><button class="copy">Copy</button><pre>npm install owlg           # zero dependencies, ~10 kB packed
-npx owlg info file.owlg</pre></div>
-        <div class="code"><button class="copy">Copy</button><pre>import { openOwlg } from 'owlg';
-// also: 'owlg/maplibre', 'owlg/leaflet', 'owlg/server'</pre></div>
+        <pre data-lang="bash">npm install owlg           # zero dependencies, ~10 kB packed
+npx owlg info file.owlg</pre>
+        <pre data-lang="js">import { openOwlg } from 'owlg';
+// also: 'owlg/maplibre', 'owlg/leaflet', 'owlg/server'</pre>
       </div>
     </div>
   </div>
@@ -93,6 +93,7 @@ npx owlg info file.owlg</pre></div>
 </section>
 
 <footer>© 2026 OWLAIT · <a href="../">owlait.com</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="../assets/main.js"></script>
 </body>
 </html>
