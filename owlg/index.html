@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OWLG — Optimized Owl GeoTIFF | OWLAIT</title>
+<meta name="description" content="OWLG: a raster format with a hard per-pixel error bound. pip install owlg · npm install owlg. QGIS plugin, OGC API Tiles, WMS.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav><div class="glass">
+  <a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#ff4fa3"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><path d="M12 14 L22 24 H42 L52 14 V38 A20 20 0 0 1 12 38 Z" fill="url(#g)"/><circle cx="24" cy="34" r="7" fill="#fff"/><circle cx="40" cy="34" r="7" fill="#fff"/><circle cx="24" cy="34" r="3.2" fill="#1d1d1f"/><circle cx="40" cy="34" r="3.2" fill="#1d1d1f"/><path d="M32 40 L29 45 H35 Z" fill="#fff"/></svg> owlait</a>
+  <div class="links"><a href="#why">Why</a><a href="#benchmark">Benchmark</a><a href="#install">Install</a><a href="#qgis">QGIS</a></div>
+  <a class="btn ghost sm" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">GitHub</a>
+</div></nav>
+
+<section class="hero">
+  <div class="blobs"><div class="blob b" style="left:-150px;right:auto"></div><div class="blob p" style="left:auto;right:-100px;top:60px"></div><div class="blob c"></div></div>
+  <div class="wrap">
+    <span class="badge">v4.0.0 · AGPL-3.0</span>
+    <h1><span class="grad">OWLG</span><br>Optimized Owl GeoTIFF</h1>
+    <p class="lead muted">A raster format with a <strong>hard per-pixel error bound</strong>. For <code>--delta d</code>, every pixel of every band satisfies |original − decoded| ≤ d. Not on average. Every pixel, provably.</p>
+    <div class="cta"><a class="btn primary" href="#install">Install</a><a class="btn ghost" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">View on GitHub</a></div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Why a bound, not just a smaller file.</h2><p class="muted">Lossy codecs are compared by average error — and averages hide the pixel that matters. OWLG stores a lossy base layer plus an entropy-coded correction layer that drags every pixel back inside ±δ before the file is written.</p></div>
+    <div class="grid">
+      <div class="card glass reveal"><div class="icon">±δ</div><h3>Guaranteed bound</h3><p class="muted"><code>owlg verify</code> proves |orig − decoded| ≤ δ over the whole raster. At δ = 0 the round trip is bit-identical, SHA-256 verified.</p></div>
+      <div class="card glass reveal"><div class="icon">GB</div><h3>10–100 GB rasters</h3><p class="muted">Tiled layout with constant-RAM encode and decode. Optional AES-256-GCM encryption. Numba path decodes ~26× faster.</p></div>
+      <div class="card glass reveal"><div class="icon">◫</div><h3>Serve it anywhere</h3><p class="muted">OWLGT web tile pyramids over OGC API – Tiles/Maps and WMS 1.3.0. QGIS plugin reads .owlg in place. Zero-dependency npm reader.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="benchmark">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Benchmark.</h2><p class="muted"><code>samples/rgb_small.tif</code>, 6.6 M pixels. Reproduce with <code>python benchmarks/bench_options.py</code>.</p></div>
+    <div class="tbl glass reveal" style="padding:8px 16px 16px">
+    <table>
+      <thead><tr><th>Codec</th><th>RMSE</th><th>Worst pixel</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td>GeoTIFF JPEG q85</td><td>3.71</td><td>30 DN</td><td>0.384 MB</td></tr>
+        <tr><td>GeoTIFF WebP q85</td><td>4.31</td><td>134 DN</td><td>0.114 MB</td></tr>
+        <tr class="hl"><td>OWLG <code>--delta 3</code></td><td>1.49</td><td><span class="grad">3 DN, guaranteed</span></td><td>0.289 MB</td></tr>
+        <tr class="hl"><td>OWLG <code>--delta 8</code></td><td>2.74</td><td><span class="grad">8 DN, guaranteed</span></td><td>0.164 MB</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="blobs"><div class="blob c" style="opacity:.25;left:-100px;bottom:-200px"></div></div>
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Install.</h2><p class="muted">Python for encoding and the full toolchain; Node for a zero-dependency reader and tile server.</p></div>
+    <div class="reveal" style="margin-top:40px">
+      <div class="tabs glass"><button data-tab="pip" class="on">pip</button><button data-tab="npm">npm</button></div>
+      <div data-pane="pip" class="on">
+        <div class="code"><button class="copy">Copy</button><pre>pip install owlg[full]      # everything: rasterio, imagecodecs, numba, cryptography, pillow
+pip install owlg            # reader only; numpy is the single hard dependency</pre></div>
+        <div class="code"><button class="copy">Copy</button><pre>owlg encode ortho.tif ortho.owlg --delta 2    # 2.9x smaller than lossless GeoTIFF
+owlg verify ortho.owlg ortho.tif              # proves the bound over every pixel
+owlg vrt    ortho.owlg                        # QGIS and gdalinfo read it directly
+owlg check                                    # probe codecs available in your env</pre></div>
+      </div>
+      <div data-pane="npm">
+        <div class="code"><button class="copy">Copy</button><pre>npm install owlg           # zero dependencies, ~10 kB packed
+npx owlg info file.owlg</pre></div>
+        <div class="code"><button class="copy">Copy</button><pre>import { openOwlg } from 'owlg';
+// also: 'owlg/maplibre', 'owlg/leaflet', 'owlg/server'</pre></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="qgis">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>QGIS plugin.</h2><p class="muted">Reads <code>.owlg</code> files in place — no decode to a GeoTIFF copy. Build the zip with <code>python scripts/build_all.py</code>, then <em>Plugins ▸ Manage and Install Plugins ▸ Install from ZIP</em> and restart QGIS.</p></div>
+    <div class="reveal" style="margin-top:40px"><a class="btn primary" href="https://github.com/fakmalpradana/owlait-owlg#qgis-plugin" target="_blank" rel="noopener">Plugin guide on GitHub</a></div>
+  </div>
+</section>
+
+<section style="text-align:center;padding-top:0">
+  <div class="wrap reveal glass" style="padding:64px 24px">
+    <h2>Open source. <span class="grad">AGPL-3.0.</span></h2>
+    <p class="muted" style="margin:16px auto 32px;max-width:520px;font-size:19px">200 tests, full docs, benchmarks and samples in the repository.</p>
+    <a class="btn primary" href="https://github.com/fakmalpradana/owlait-owlg" target="_blank" rel="noopener">github.com/fakmalpradana/owlait-owlg</a>
+  </div>
+</section>
+
+<footer>© 2026 OWLAIT · <a href="../">owlait.com</a></footer>
+<script src="../assets/main.js"></script>
+</body>
+</html>
