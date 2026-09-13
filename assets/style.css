@@ -10,7 +10,7 @@ h3{font-size:24px;font-weight:600}
 p{margin:0}
 .muted{color:var(--muted)}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-section{padding:120px 0;position:relative}
+section{padding:120px 0}
 .grad{background:linear-gradient(90deg,var(--pink),var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* glass */
@@ -42,13 +42,16 @@ nav .links a:hover{color:var(--fg)}
 .btn.ghost:hover{background:rgba(0,0,0,.08)}
 .btn.sm{padding:8px 16px;font-size:14px}
 
-/* blobs */
-.blobs{position:absolute;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
-.blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.18;will-change:transform;animation:drift 24s ease-in-out infinite alternate}
-.blob.p{background:var(--pink);width:360px;height:360px;top:-60px;left:-40px}
-.blob.b{background:var(--blue);width:420px;height:420px;top:120px;right:-120px;animation-duration:30s;animation-delay:-8s}
-.blob.c{background:var(--cyan);width:300px;height:300px;bottom:-100px;left:40%;animation-duration:27s;animation-delay:-15s}
-@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,60px) scale(1.15)}100%{transform:translate(-60px,100px) scale(.95)}}
+/* background: one fixed layer, blobs drift across the whole page */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#fff}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;will-change:transform;animation:drift 18s ease-in-out infinite}
+.blob.p{background:var(--pink);width:44vw;height:44vw;top:-12vw;left:-10vw}
+.blob.b{background:var(--blue);width:50vw;height:50vw;top:20vh;right:-18vw;animation-name:drift2;animation-duration:22s}
+.blob.c{background:var(--cyan);width:36vw;height:36vw;bottom:-14vw;left:30vw;animation-name:drift3;animation-duration:26s}
+.blob.p2{background:var(--pink);width:30vw;height:30vw;bottom:10vh;right:20vw;opacity:.18;animation-name:drift2;animation-duration:30s;animation-direction:reverse}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}33%{transform:translate(28vw,18vh) scale(1.2)}66%{transform:translate(8vw,42vh) scale(.9)}100%{transform:translate(0,0) scale(1)}}
+@keyframes drift2{0%{transform:translate(0,0) scale(1)}33%{transform:translate(-26vw,-14vh) scale(.85)}66%{transform:translate(-10vw,22vh) scale(1.15)}100%{transform:translate(0,0) scale(1)}}
+@keyframes drift3{0%{transform:translate(0,0) scale(1)}33%{transform:translate(-22vw,-30vh) scale(1.1)}66%{transform:translate(18vw,-12vh) scale(.95)}100%{transform:translate(0,0) scale(1)}}
 
 /* hero */
 .hero{min-height:88vh;display:flex;align-items:center;text-align:center;padding:80px 0}
