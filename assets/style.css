@@ -185,3 +185,50 @@ footer{padding:48px 0;text-align:center;font-size:14px;color:var(--muted)}
   .doc-sidebar{position:fixed;top:0;bottom:0;left:0;width:78vw;max-width:320px;border-radius:0;transform:translateX(-100%);transition:transform .25s;z-index:20}
   body.sidebar-open .doc-sidebar{transform:none}
 }
+
+/* benchmark: stat tiles, chart card, collapsed table */
+.stats{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:40px}
+.stat{padding:22px 22px 20px}
+.stat .n{font-size:clamp(30px,4vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.stat .h{margin-top:6px;font-size:15px}
+.stat .s{margin-top:8px;font-size:13px;line-height:1.4}
+.bench-tabs{margin:40px 0 16px}
+.bench-card{padding:20px 16px 12px;height:420px}
+.bench-card canvas{position:relative;z-index:1}
+.bench-note{margin-top:14px;font-size:14px;max-width:720px}
+.bench-details{margin-top:24px}
+.bench-details summary{cursor:pointer;font-weight:600;padding:12px 0;color:var(--muted)}
+.bench-details summary:hover{color:var(--fg)}
+.bench-details .tbl{margin-top:8px}
+.bench-details table+table{margin-top:32px}
+.bench-details caption{text-align:left;font-weight:600;padding:10px 16px;caption-side:top}
+@media(max-width:600px){.bench-card{height:360px;padding:12px 6px 8px}.stats{grid-template-columns:1fr 1fr;gap:12px}.stat{padding:16px}}
+
+/* viewer */
+.cmp-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:20px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px;scrollbar-width:none;max-width:100%}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.6);padding:8px 14px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.chip:hover{color:var(--fg)}
+.chip.on{color:#fff;background:#1d1d1f;border-color:#1d1d1f}
+.chip.bound.on{background:linear-gradient(90deg,var(--pink),var(--blue));border-color:transparent}
+.cmp-fmts{justify-content:center;flex-wrap:wrap;margin:12px auto 0}
+.cmp-legend[hidden]{display:none}
+.cmp-stage{position:relative;width:min(100%,560px);aspect-ratio:1;margin:16px auto 0;border-radius:var(--radius);overflow:hidden;touch-action:none;user-select:none;cursor:col-resize;padding:0}
+.cmp-stage.zoomed{cursor:grab}
+.cmp-layer{position:absolute;inset:0;background-repeat:no-repeat;background-size:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.cmp-handle{position:absolute;top:0;bottom:0;width:0;left:50%;z-index:2}
+.cmp-handle::before{content:"";position:absolute;top:0;bottom:0;left:-1px;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.cmp-handle span{position:absolute;top:50%;left:-18px;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25);transform:translateY(-50%)}
+.cmp-handle span::before{content:"⟷";position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#1d1d1f}
+.cmp-handle:focus-visible span{outline:3px solid var(--blue)}
+.cmp-tag{position:absolute;top:12px;z-index:2;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(29,29,31,.72);color:#fff;pointer-events:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.cmp-tag.l{left:12px}.cmp-tag.r{right:12px}
+.cmp-legend{position:absolute;right:12px;bottom:12px;z-index:2;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#fff;padding:6px 10px;border-radius:999px;background:rgba(29,29,31,.72);pointer-events:none}
+.cmp-legend i{width:80px;height:8px;border-radius:4px;background:linear-gradient(90deg,#000,#fff)}
+.cmp-stats{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);width:min(100%,560px);margin:16px auto 0;text-align:center}
+.cmp-stats .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.cmp-stats .v{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:2px}
+.cmp-stats .s{font-size:12px;margin-top:2px}
+.cmp-stats .badge{font-size:11px;padding:2px 8px}
+@media(max-width:600px){.cmp-fmts{flex-wrap:nowrap;justify-content:flex-start}.cmp-stats{grid-template-columns:1fr 1fr}.cmp-stage{border-radius:14px}}
