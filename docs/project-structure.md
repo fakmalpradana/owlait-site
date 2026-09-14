@@ -44,8 +44,10 @@ owns, `pages/` only arranges them.
 
 Two deliberate exceptions, both about load order or load size:
 
-- `src/styles/index.css` is imported only by `mount.tsx`, which is what keeps
-  the CSS cascade in its original order.
+- `src/styles/` and `src/content/` hold no modules, so they have no barrel:
+  `styles/index.css` is imported only by `mount.tsx`, which is what keeps the
+  CSS cascade in its original order, and the Markdown is reached through the
+  glob in `pages/Doc.tsx`.
 - `src/entries/*` imports page modules directly rather than through
   `@/pages`, because the barrel would pull all five pages into every chunk.
   `src/features/` has no barrel for the same reason.

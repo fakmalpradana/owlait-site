@@ -20,7 +20,7 @@ const featureFiles = [
   'src/features/benchmark/README.md',
 ];
 
-test('phase 2 benchmark feature has the requested boundary and home wiring', async () => {
+test('benchmark feature has the requested boundary and home wiring', async () => {
   for (const file of featureFiles) assert.ok(existsSync(new URL(file, root)), `${file} is missing`);
 
   const [home, chart, format, packageJson] = await Promise.all([
