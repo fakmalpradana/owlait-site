@@ -93,6 +93,7 @@ export function SplitStage({
         aria-valuenow={Math.round(state.split)}
         tabIndex={0}
         style={{ left: `${state.split}%` }}
+        whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 1.15 }}
         transition={springFast}
         onKeyDown={(event) => {

@@ -3,6 +3,7 @@ export * from './Bg';
 export * from './Button';
 export * from './Card';
 export * from './Chip';
+export * from './CodeBlock';
 export * from './Footer';
 export * from './Logo';
 export * from './MobileMenu';

@@ -22,17 +22,20 @@ export function Tabs<V extends string | number>({
       {options.map((option) => {
         const active = option.value === value;
         return (
-          <button
+          <m.button
             key={option.value}
             type="button"
             className={active ? 'on' : undefined}
             role="tab"
             aria-selected={active}
             onClick={() => onChange(option.value)}
+            whileHover={{ y: -1, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            transition={springFast}
           >
             {active && <m.span className="tabs-indicator" layoutId={`tabs-${id}`} transition={springFast} />}
             <span className="tab-label">{option.label}</span>
-          </button>
+          </m.button>
         );
       })}
     </div>
