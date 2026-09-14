@@ -31,6 +31,11 @@
 @media(max-width:900px){
   .doc-menu-btn{display:block}
   .docs{grid-template-columns:1fr;padding-top:24px}
-  .doc-sidebar{position:fixed;top:0;bottom:0;left:0;width:78vw;max-width:320px;border-radius:0;transform:translateX(-100%);transition:transform .25s;z-index:20}
-  body.sidebar-open .doc-sidebar{transform:none}
+  .doc-menu-btn{display:grid;place-items:center;padding:0}
+  .doc-sidebar{display:none}
+  .doc-drawer{position:fixed;top:0;bottom:0;left:0;width:78vw;max-width:320px;border-radius:0;z-index:21;padding:20px;overflow:auto;display:flex;flex-direction:column;gap:2px}
+  .doc-drawer a{display:block;padding:8px 12px;border-radius:10px;color:var(--muted);font-size:15px}
+  .doc-drawer a.on{background:rgba(0,0,0,.05);color:var(--fg);font-weight:600}
+  .doc-drawer a.doc-home{font-weight:600;color:var(--fg);margin-bottom:8px}
+  .doc-scrim{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.25)}
 }
