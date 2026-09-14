@@ -28,18 +28,16 @@ build without anyone remembering them.
 
 ## Two ways to publish
 
-**GitHub Actions (recommended).** Add a workflow that runs `npm ci` and
-`npm run build`, then uploads `dist/` with `actions/upload-pages-artifact` and
-deploys it with `actions/deploy-pages`. Switch the repository's Pages source
-from "Deploy from a branch" to "GitHub Actions". The build needs no secrets.
+**GitHub Actions (in use).** `.github/workflows/deploy.yml` runs on every push
+to `main`: `npm ci`, typecheck, lint, tests, `npm run build`, then uploads
+`dist/` and deploys it with `actions/deploy-pages`. The repository's Pages
+source is set to "GitHub Actions". No secrets are needed. A failing check
+blocks the deploy, so a broken build never replaces the live site.
 
 **Committed output.** If a workflow is unwanted, build locally and publish
 `dist/` to a `gh-pages` branch (`git subtree push` or `gh-pages` npm package),
 then point Pages at that branch. Simpler to set up, but the published site is
 only as fresh as the last person who remembered to run the build.
-
-This branch is local and deliberately changes neither: no workflow file has
-been added and the Pages settings have not been touched.
 
 ## Release checklist
 
