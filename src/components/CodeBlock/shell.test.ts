@@ -1,4 +1,3 @@
-// @ts-nocheck -- Node 26 runs this TypeScript directly; the site does not ship Node types.
 import assert from 'node:assert/strict';
 import test from 'node:test';
 

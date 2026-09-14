@@ -11,3 +11,9 @@ p{margin:0}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 section{padding:120px 0}
 .grad{background:linear-gradient(90deg,var(--pink),var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* keyboard focus: one ring for every control the pointer animates */
+.btn:focus-visible,.chip:focus-visible,.tabs button:focus-visible,.copy:focus-visible,
+.mobile-menu-trigger:focus-visible,.doc-menu-btn:focus-visible,
+.doc-sidebar a:focus-visible,.doc-drawer a:focus-visible,.doc-toc a:focus-visible,
+nav .links a:focus-visible,.mobile-menu a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}

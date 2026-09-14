@@ -1,6 +1,6 @@
 # Motion
 
-The app mounts `LazyMotion` with `domAnimation` and `strict`, then applies `MotionConfig reducedMotion="user"` in `src/main.tsx`.
+The app mounts `LazyMotion` with `domAnimation` and `strict`, then applies `MotionConfig reducedMotion="user"` in `src/mount.tsx`, which every entry in `src/entries/` calls.
 
 ## Presets
 

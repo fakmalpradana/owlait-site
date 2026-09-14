@@ -46,9 +46,9 @@ client chunk, something imported the plugin from application code.
 const CONTENT = import.meta.glob<DocModule>(['../content/*.md', '!../content/README.md'], { query: '?html' });
 ```
 
-Lazy, not eager: `main.tsx` is the single entry shared by every HTML file, so an
-eager glob would put all six documents into the bundle the home page downloads.
-Each page pulls only its own chunk (7–17 kB gzip).
+Lazy, not eager: all six documentation URLs share `src/entries/doc.tsx`, so an
+eager glob would put every document into the chunk each of them downloads.
+Each page pulls only its own content chunk (5–17 kB gzip).
 
 The rendered HTML is injected with `dangerouslySetInnerHTML`; the only thing
 `DocArticle` wires up afterwards is one delegated click handler that makes the

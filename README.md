@@ -8,13 +8,21 @@ Requires Node.js 26 and npm 11.
 
 ```bash
 npm install
-npm run dev
-npm run build
-npm run preview
+npm run dev        # http://localhost:5173
+npm run build      # → dist/
+npm run preview    # serve dist/
 npm run typecheck
+npm run lint
+npm test
 ```
 
+`dist/` is what gets published — the repository root is source now, not the
+site. See [deployment.md](docs/deployment.md) before publishing.
+
 ## URLs
+
+Every URL has its own entry module in `src/entries/`, so a page downloads only
+its own code on top of the shared React bundle.
 
 | URL | Entry |
 | --- | --- |
@@ -39,4 +47,9 @@ python benchmarks/visual_crops_web.py data/FT2026_crop/FT2026_crop.tif data/FT20
 
 ## Docs
 
-- [Project structure](docs/project-structure.md)
+- [Project structure](docs/project-structure.md) — the directory tree and the rules behind it
+- [Architecture](docs/architecture.md) — why MPA without a router, and what loads when
+- [Components](docs/components.md) — the shared UI pieces and their props
+- [Motion](docs/motion.md) — animation presets and the rule every control follows
+- [Content workflow](docs/content-workflow.md) — the Markdown pipeline and how to add a docs page
+- [Deployment](docs/deployment.md) — publishing to GitHub Pages and the release checklist

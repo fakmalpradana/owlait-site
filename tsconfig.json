@@ -8,6 +8,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    // shell.test.ts runs straight through `node --test`, so it imports .ts paths
+    "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "strict": true,
     "skipLibCheck": true,

@@ -40,7 +40,7 @@ export function tokenizeShellLine(line: string) {
     } else if (!seenCmd) {
       out += `${separator}<span class="sh-cmd">${esc(token)}</span>`;
       seenCmd = true;
-    } else if (!seenSub && !wasFlag && !/[\/.]/.test(token)) {
+    } else if (!seenSub && !wasFlag && !/[/.]/.test(token)) {
       out += `${separator}<span class="sh-sub">${esc(token)}</span>`;
       seenSub = true;
     } else {
